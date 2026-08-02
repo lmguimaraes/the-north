@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Competition Rules | The North Latin Festival</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#061d43" />
+  <link rel="stylesheet" href="css/styles.css?v=31" />
+
+  <style>
+    body.rules-viewer-body {
+      margin: 0;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 178, 74, 0.12), transparent 30%),
+        radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.12), transparent 32%),
+        var(--ice);
+    }
+
+    .rules-viewer-shell {
+      min-height: 100dvh;
+    }
+
+    .rules-viewer-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      border-bottom: 1px solid rgba(6, 29, 67, 0.10);
+      background: rgba(249, 253, 255, 0.94);
+      backdrop-filter: blur(16px);
+    }
+
+    .rules-download-top,
+    .rules-download-top:visited {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      border-radius: 999px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy) 0%, #082d63 50%, #00aeca 100%);
+      box-shadow: 0 12px 24px rgba(6, 29, 67, 0.18);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      text-decoration: none;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .rules-viewer-main {
+      width: min(calc(100% - 16px), 1040px);
+      margin: 0 auto;
+      padding: 10px 0 36px;
+    }
+
+    .rules-status {
+      margin: 0 0 10px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(6, 29, 67, 0.08);
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1.4;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(6, 29, 67, 0.06);
+    }
+
+    .rules-pages {
+      display: grid;
+      gap: 12px;
+    }
+
+    .rules-page-sheet {
+      display: grid;
+      gap: 8px;
+      justify-items: center;
+      padding: 8px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(6, 29, 67, 0.10);
+      box-shadow: 0 16px 38px rgba(6, 29, 67, 0.08);
+    }
+
+    .rules-page-label {
+      justify-self: start;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #087f9a;
+      background: rgba(0, 174, 202, 0.10);
+      font-size: 10px;
+      font-weight: 950;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .rules-page-sheet canvas {
+      display: block;
+      max-width: 100%;
+      height: auto !important;
+      border-radius: 10px;
+      background: var(--white);
+    }
+
+    .rules-error[hidden] {
+      display: none;
+    }
+
+    .rules-error {
+      display: grid;
+      gap: 14px;
+      margin-top: 12px;
+      padding: 18px;
+      border-radius: 22px;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(255, 178, 74, 0.18), transparent 42%),
+        rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(6, 29, 67, 0.10);
+      box-shadow: 0 18px 44px rgba(6, 29, 67, 0.08);
+    }
+
+    .rules-error p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.5;
+    }
+
+    .rules-error-download,
+    .rules-error-download:visited {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 18px;
+      border-radius: 999px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy) 0%, #082d63 50%, #00aeca 100%);
+      box-shadow: 0 14px 28px rgba(6, 29, 67, 0.22), 0 0 22px rgba(0, 199, 199, 0.18);
+      font-size: 0.74rem;
+      font-weight: 950;
+      letter-spacing: 0.14em;
+      line-height: 1;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 520px) {
+      .rules-viewer-header {
+        padding: 8px;
+      }
+
+      .rules-download-top {
+        width: 100%;
+      }
+
+      .rules-viewer-main {
+        width: min(calc(100% - 12px), 1040px);
+        padding-top: 8px;
+      }
+
+      .rules-page-sheet {
+        padding: 6px;
+        border-radius: 14px;
+      }
+
+      .rules-page-sheet canvas {
+        border-radius: 8px;
+      }
+    }
+
+    @media (min-width: 720px) {
+      .rules-viewer-header {
+        padding: 12px 18px;
+      }
+
+      .rules-viewer-main {
+        padding-top: 16px;
+      }
+
+      .rules-pages {
+        gap: 18px;
+      }
+
+      .rules-page-sheet {
+        padding: 14px;
+        border-radius: 24px;
+      }
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body class="rules-viewer-body">
+  <div class="rules-viewer-shell">
+    <header class="rules-viewer-header">
+      <a
+        class="rules-download-top"
+        href="assets/competition/the-north-competition-rules-en.pdf"
+        data-rules-download
+      >
+        Download PDF
+      </a>
+    </header>
+
+    <main class="rules-viewer-main">
+      <div class="rules-status" id="rulesStatus">Loading rules...</div>
+
+      <div class="rules-pages" id="rulesPages" aria-live="polite"></div>
+
+      <div class="rules-error" id="rulesError" hidden>
+        <p id="rulesErrorText">The PDF viewer could not load on this device. You can still download the PDF directly.</p>
+
+        <a
+          class="rules-error-download"
+          href="assets/competition/the-north-competition-rules-en.pdf"
+          data-rules-download
+        >
+          Download PDF
+        </a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+
+        function getStoredRulesLanguage() {
+        try {
+            return window.localStorage.getItem("tnf-language");
+        } catch (error) {
+            return null;
+        }
+        }
+
+        function getRulesLanguage() {
+        const urlLang = (params.get("lang") || "").toLowerCase();
+        const storedLang = (getStoredRulesLanguage() || "").toLowerCase();
+
+        if (urlLang === "fr") {
+            return "fr";
+        }
+
+        if (storedLang === "fr") {
+            return "fr";
+        }
+
+        if (urlLang === "en") {
+            return "en";
+        }
+
+        if (storedLang === "en") {
+            return "en";
+        }
+
+        return "en";
+        }
+
+        const language = getRulesLanguage();
+
+      const pdfPath = language === "fr"
+        ? "assets/competition/the-north-competition-rules-fr.pdf"
+        : "assets/competition/the-north-competition-rules-en.pdf";
+
+      const fileName = language === "fr"
+        ? "the-north-competition-rules-fr.pdf"
+        : "the-north-competition-rules-en.pdf";
+
+      const copy = {
+        en: {
+          documentTitle: "Competition Rules | The North Latin Festival",
+          download: "Download PDF",
+          loading: "Loading rules...",
+          rendered: "Rules loaded.",
+          page: "Page",
+          error: "The PDF viewer could not load on this device. You can still download the PDF directly."
+        },
+        fr: {
+          documentTitle: "Règles de compétition | The North Latin Festival",
+          download: "Télécharger le PDF",
+          loading: "Chargement des règles...",
+          rendered: "Règles chargées.",
+          page: "Page",
+          error: "Le lecteur PDF n’a pas pu se charger sur cet appareil. Vous pouvez quand même télécharger le PDF directement."
+        }
+      }[language];
+
+      document.documentElement.lang = language;
+      document.title = copy.documentTitle;
+
+      document.getElementById("rulesStatus").textContent = copy.loading;
+      document.getElementById("rulesErrorText").textContent = copy.error;
+
+      document.querySelectorAll("[data-rules-download]").forEach((link) => {
+        link.href = pdfPath;
+        link.setAttribute("download", fileName);
+        link.textContent = copy.download;
+      });
+
+      async function renderPdf() {
+        const status = document.getElementById("rulesStatus");
+        const pagesContainer = document.getElementById("rulesPages");
+        const errorBox = document.getElementById("rulesError");
+
+        try {
+          if (!window.pdfjsLib) {
+            throw new Error("PDF.js did not load.");
+          }
+
+          pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+          const pdfUrl = new URL(pdfPath, window.location.href).href;
+          const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+
+          pagesContainer.innerHTML = "";
+
+          for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+            status.textContent = `${copy.loading} ${pageNumber}/${pdf.numPages}`;
+
+            const page = await pdf.getPage(pageNumber);
+            const baseViewport = page.getViewport({ scale: 1 });
+
+            const availableWidth = Math.max(280, pagesContainer.clientWidth - 2);
+            const cssScale = Math.min(1.7, availableWidth / baseViewport.width);
+            const deviceScale = Math.min(window.devicePixelRatio || 1, 2);
+
+            const renderViewport = page.getViewport({
+              scale: cssScale * deviceScale
+            });
+
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d", { alpha: false });
+
+            canvas.width = Math.floor(renderViewport.width);
+            canvas.height = Math.floor(renderViewport.height);
+            canvas.style.width = Math.floor(renderViewport.width / deviceScale) + "px";
+            canvas.style.height = Math.floor(renderViewport.height / deviceScale) + "px";
+
+            const pageShell = document.createElement("article");
+            pageShell.className = "rules-page-sheet";
+
+            const pageLabel = document.createElement("span");
+            pageLabel.className = "rules-page-label";
+            pageLabel.textContent = `${copy.page} ${pageNumber}`;
+
+            pageShell.appendChild(pageLabel);
+            pageShell.appendChild(canvas);
+            pagesContainer.appendChild(pageShell);
+
+            await page.render({
+              canvasContext: context,
+              viewport: renderViewport
+            }).promise;
+          }
+
+          status.textContent = copy.rendered;
+
+          window.setTimeout(() => {
+            status.style.display = "none";
+          }, 700);
+        } catch (error) {
+          status.style.display = "none";
+          errorBox.hidden = false;
+        }
+      }
+
+      renderPdf();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "the-north-latin-festival-site",
+  "version": "11.0.0",
+  "private": true,
+  "description": "Static landing page for The North Latin Festival.",
+  "scripts": {
+    "dev": "node server.js --port 3000",
+    "dev:network": "node server.js --host 0.0.0.0 --port 3000",
+    "dev:port": "node server.js --port 3000"
+  }
+}
