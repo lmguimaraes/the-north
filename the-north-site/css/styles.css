@@ -4971,3 +4971,718 @@ html {
     font-size: clamp(44px, 9vw, 62px);
   }
 }
+
+/*
+  The North Latin Festival — August 2026 site additions
+  - compact two-up vendor stats on mobile
+  - passes page
+  - partner logo panels
+*/
+
+/* ==================================================
+   HOME — ALL PASSES CTA
+   ================================================== */
+
+.passes-page-link-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.passes-page-link,
+.passes-page-link:visited {
+  min-width: min(100%, 210px);
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(6, 29, 67, 0.13),
+    0 12px 28px rgba(6, 29, 67, 0.08);
+  text-decoration: none;
+}
+
+.passes-page-link:hover,
+.passes-page-link:focus-visible {
+  background: var(--white);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 174, 202, 0.26),
+    0 17px 36px rgba(6, 29, 67, 0.11),
+    0 0 24px rgba(0, 199, 199, 0.10);
+}
+
+/* ==================================================
+   VENDORS — MOBILE STAT CARD FIX
+   ================================================== */
+
+@media (max-width: 719px) {
+  .vendor-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .vendor-stat-card {
+    min-height: 0;
+    aspect-ratio: 1;
+    align-content: center;
+    justify-items: center;
+    gap: 7px;
+    padding: 13px 9px;
+    border-radius: 18px;
+    text-align: center;
+  }
+
+  .vendor-stat-card::before {
+    width: 32px;
+    height: 2px;
+  }
+
+  .vendor-stat-card strong {
+    font-size: clamp(28px, 9.2vw, 42px);
+    line-height: 0.94;
+  }
+
+  .vendor-stat-card span {
+    max-width: 14ch;
+    font-size: clamp(8px, 2.35vw, 10px);
+    line-height: 1.28;
+    letter-spacing: 0.075em;
+    text-wrap: balance;
+  }
+}
+
+@media (max-width: 359px) {
+  .vendor-stats-grid {
+    gap: 8px;
+  }
+
+  .vendor-stat-card {
+    gap: 6px;
+    padding: 11px 7px;
+    border-radius: 16px;
+  }
+
+  .vendor-stat-card strong {
+    font-size: clamp(26px, 8.8vw, 34px);
+  }
+
+  .vendor-stat-card span {
+    font-size: 8px;
+  }
+}
+
+/* ==================================================
+   PRIZES — CLICKABLE PARTNER LOGO PANELS
+   ================================================== */
+
+.partner-logo-link {
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 96px;
+  place-items: center;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 16px;
+  color: var(--navy);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.10), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(244, 251, 255, 0.92));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 9px 22px rgba(6, 29, 67, 0.055);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.partner-logo-link::after {
+  content: "↗";
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 999px;
+  color: rgba(6, 29, 67, 0.68);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 5px 12px rgba(6, 29, 67, 0.08);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.partner-logo-link:hover,
+.partner-logo-link:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(0, 174, 202, 0.28);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.15), transparent 44%),
+    var(--white);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    0 15px 32px rgba(6, 29, 67, 0.09),
+    0 0 22px rgba(0, 199, 199, 0.08);
+}
+
+.partner-logo-link:focus-visible {
+  outline: 3px solid rgba(38, 228, 255, 0.32);
+  outline-offset: 3px;
+}
+
+.partner-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 8px 34px 8px 10px;
+  object-fit: contain;
+}
+
+@media (min-width: 720px) {
+  .partner-logo-link {
+    height: 112px;
+    margin-bottom: 19px;
+    border-radius: 18px;
+  }
+
+  .partner-logo {
+    padding: 10px 38px 10px 12px;
+  }
+}
+
+/* ==================================================
+   PASSES PAGE
+   ================================================== */
+
+.passes-page main {
+  overflow: hidden;
+}
+
+.passes-hero {
+  padding-bottom: 14px;
+}
+
+.passes-hero .artists-hero-inner {
+  padding-bottom: 30px;
+  background:
+    radial-gradient(circle at 4% 4%, rgba(255, 178, 74, 0.31), transparent 31%),
+    radial-gradient(circle at 96% 8%, rgba(38, 228, 255, 0.31), transparent 37%),
+    linear-gradient(135deg, #03142f 0%, #082759 52%, #07556d 100%);
+}
+
+.passes-hero .artists-hero-inner::after {
+  content: "";
+  position: absolute;
+  right: -74px;
+  bottom: -112px;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 34px rgba(255, 255, 255, 0.035),
+    0 0 0 76px rgba(38, 228, 255, 0.025);
+}
+
+.passes-hero .section-title {
+  max-width: 900px;
+  font-size: clamp(44px, 13vw, 78px);
+  text-wrap: balance;
+}
+
+.passes-hero .section-lead {
+  max-width: 760px;
+}
+
+.passes-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 19px;
+}
+
+.passes-hero-chips span {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.90);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.passes-quick-nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin-top: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+}
+
+.passes-quick-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.passes-quick-nav a,
+.passes-quick-nav a:visited {
+  display: inline-flex;
+  min-height: 38px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 13px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 999px;
+  color: rgba(6, 29, 67, 0.78);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 9px 22px rgba(6, 29, 67, 0.06);
+  scroll-snap-align: start;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.passes-quick-nav a:hover,
+.passes-quick-nav a:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(0, 174, 202, 0.26);
+  color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 14px 30px rgba(6, 29, 67, 0.09);
+}
+
+.passes-quick-nav a:focus-visible {
+  outline: 3px solid rgba(38, 228, 255, 0.28);
+  outline-offset: 2px;
+}
+
+.passes-weekend-section {
+  padding-top: 22px;
+  padding-bottom: 34px;
+}
+
+.passes-section-heading {
+  position: relative;
+  max-width: 880px;
+  padding-top: 18px;
+}
+
+.passes-section-heading::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 62px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--flame), var(--cyan));
+}
+
+.passes-section-title {
+  max-width: 820px;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(34px, 9.8vw, 58px);
+  font-weight: 950;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.passes-section-heading > p:last-child {
+  max-width: 760px;
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.62;
+}
+
+.passes-weekend-grid {
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.pass-catalog-section {
+  position: relative;
+  padding-top: 36px;
+  padding-bottom: 40px;
+  isolation: isolate;
+}
+
+.pass-catalog-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  border-top: 1px solid rgba(6, 29, 67, 0.055);
+  border-bottom: 1px solid rgba(6, 29, 67, 0.055);
+}
+
+.pass-catalog-section--friday::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(38, 228, 255, 0.13), transparent 30%),
+    linear-gradient(180deg, rgba(235, 249, 253, 0.72), rgba(255, 255, 255, 0.44));
+}
+
+.pass-catalog-section--saturday::before {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 178, 74, 0.14), transparent 31%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.62), rgba(244, 251, 255, 0.48));
+}
+
+.day-pass-grid {
+  display: grid;
+  gap: 13px;
+  margin-top: 22px;
+}
+
+.day-pass-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 300px;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 18px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 24px;
+  color: var(--navy);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.10), transparent 36%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.99), rgba(247, 252, 255, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    0 15px 36px rgba(6, 29, 67, 0.09);
+  isolation: isolate;
+}
+
+.day-pass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 4px;
+  background: linear-gradient(90deg, var(--aqua), var(--cyan));
+}
+
+.day-pass-card::after {
+  content: "";
+  position: absolute;
+  right: -82px;
+  bottom: -104px;
+  z-index: -1;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 199, 199, 0.13), transparent 66%);
+}
+
+.pass-catalog-section--saturday .day-pass-card::before {
+  background: linear-gradient(90deg, var(--flame), var(--cyan));
+}
+
+.pass-catalog-section--saturday .day-pass-card::after {
+  background: radial-gradient(circle, rgba(255, 178, 74, 0.15), transparent 66%);
+}
+
+.day-pass-card--primary {
+  border-color: rgba(0, 174, 202, 0.24);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.18), transparent 38%),
+    radial-gradient(circle at 0% 100%, rgba(255, 178, 74, 0.11), transparent 38%),
+    linear-gradient(155deg, rgba(255, 255, 255, 1), rgba(239, 250, 254, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 19px 44px rgba(0, 174, 202, 0.12),
+    0 12px 30px rgba(6, 29, 67, 0.08);
+}
+
+.day-pass-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.day-pass-number {
+  color: rgba(6, 29, 67, 0.32);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.16em;
+}
+
+.day-pass-date {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: #087f9a;
+  background: rgba(0, 174, 202, 0.09);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.pass-catalog-section--saturday .day-pass-date {
+  color: #a75a0c;
+  background: rgba(255, 178, 74, 0.13);
+}
+
+.day-pass-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  margin-top: 24px;
+  border: 1px solid rgba(0, 174, 202, 0.17);
+  border-radius: 16px;
+  color: #087f9a;
+  background: rgba(0, 199, 199, 0.07);
+  box-shadow: 0 10px 22px rgba(0, 174, 202, 0.08);
+}
+
+.pass-catalog-section--saturday .day-pass-icon {
+  border-color: rgba(255, 178, 74, 0.23);
+  color: #b8640c;
+  background: rgba(255, 178, 74, 0.09);
+  box-shadow: 0 10px 22px rgba(255, 178, 74, 0.09);
+}
+
+.day-pass-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.day-pass-card h3 {
+  max-width: 15ch;
+  margin: 18px 0 0;
+  color: var(--navy);
+  font-size: clamp(25px, 7vw, 34px);
+  font-weight: 950;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.day-pass-card > p {
+  max-width: 34ch;
+  margin: 13px 0 22px;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.52;
+}
+
+.day-pass-action {
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+  padding-right: 18px;
+  padding-left: 18px;
+}
+
+.day-pass-action span:last-child {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.pass-checkout-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 18px auto 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(6, 29, 67, 0.08);
+  border-radius: 999px;
+  color: rgba(6, 29, 67, 0.66);
+  background: rgba(255, 255, 255, 0.70);
+  box-shadow: 0 9px 22px rgba(6, 29, 67, 0.055);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (min-width: 520px) {
+  .passes-hero .artists-hero-inner {
+    padding: 36px 26px 34px;
+  }
+
+  .passes-quick-nav {
+    justify-content: center;
+  }
+
+  .day-pass-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .day-pass-card {
+    min-height: 330px;
+    padding: 21px;
+  }
+
+  .passes-page-link,
+  .passes-page-link:visited {
+    min-width: 220px;
+  }
+}
+
+@media (min-width: 720px) {
+  .passes-hero {
+    padding-bottom: 22px;
+  }
+
+  .passes-hero .artists-hero-inner {
+    padding: 50px 40px 42px;
+  }
+
+  .passes-hero-chips span {
+    min-height: 34px;
+    padding: 9px 13px;
+    font-size: 9px;
+  }
+
+  .passes-quick-nav {
+    margin-top: 18px;
+  }
+
+  .passes-quick-nav a,
+  .passes-quick-nav a:visited {
+    min-height: 42px;
+    padding: 11px 15px;
+    font-size: 10px;
+  }
+
+  .passes-weekend-section {
+    padding-top: 34px;
+    padding-bottom: 48px;
+  }
+
+  .passes-section-heading {
+    padding-top: 21px;
+  }
+
+  .passes-section-title {
+    font-size: clamp(44px, 5.7vw, 68px);
+  }
+
+  .passes-section-heading > p:last-child {
+    font-size: 16px;
+  }
+
+  .passes-weekend-grid {
+    gap: 16px;
+    margin-top: 26px;
+  }
+
+  .pass-catalog-section {
+    padding-top: 54px;
+    padding-bottom: 58px;
+  }
+
+  .day-pass-grid {
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .day-pass-card {
+    min-height: 350px;
+    padding: 24px;
+    border-radius: 28px;
+  }
+
+  .day-pass-card h3 {
+    font-size: clamp(27px, 3.5vw, 36px);
+  }
+}
+
+@media (min-width: 980px) {
+  .passes-hero .artists-hero-inner {
+    padding: 64px 56px 50px;
+  }
+
+  .passes-hero .section-title {
+    font-size: clamp(66px, 6.5vw, 98px);
+  }
+
+  .passes-quick-nav {
+    margin-top: 24px;
+  }
+
+  .passes-weekend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .day-pass-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .day-pass-card {
+    min-height: 388px;
+    padding: 22px;
+  }
+
+  .day-pass-card h3 {
+    font-size: clamp(24px, 2.15vw, 32px);
+  }
+
+  .day-pass-card > p {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .day-pass-grid {
+    gap: 18px;
+  }
+
+  .day-pass-card {
+    padding: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-logo-link,
+  .passes-quick-nav a,
+  .passes-page-link {
+    transition: none;
+  }
+}
+

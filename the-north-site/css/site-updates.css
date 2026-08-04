@@ -1,0 +1,1088 @@
+/*
+  The North Latin Festival — site additions and refinements
+  - compact two-up vendor stats on mobile
+  - passes page and collapsible ticket groups
+  - compact partner prize cards with logo-only outbound links
+*/
+
+/* ==================================================
+   HOME — ALL PASSES CTA
+   ================================================== */
+
+.passes-page-link-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.passes-page-link,
+.passes-page-link:visited {
+  min-width: min(100%, 210px);
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(6, 29, 67, 0.13),
+    0 12px 28px rgba(6, 29, 67, 0.08);
+  text-decoration: none;
+}
+
+.passes-page-link:hover,
+.passes-page-link:focus-visible {
+  background: var(--white);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 174, 202, 0.26),
+    0 17px 36px rgba(6, 29, 67, 0.11),
+    0 0 24px rgba(0, 199, 199, 0.10);
+}
+
+/* ==================================================
+   VENDORS — MOBILE STAT CARD FIX
+   ================================================== */
+
+@media (max-width: 719px) {
+  .vendor-stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .vendor-stat-card {
+    min-height: 0;
+    aspect-ratio: 1;
+    align-content: center;
+    justify-items: center;
+    gap: 7px;
+    padding: 13px 9px;
+    border-radius: 18px;
+    text-align: center;
+  }
+
+  .vendor-stat-card::before {
+    width: 32px;
+    height: 2px;
+  }
+
+  .vendor-stat-card strong {
+    font-size: clamp(28px, 9.2vw, 42px);
+    line-height: 0.94;
+  }
+
+  .vendor-stat-card span {
+    max-width: 14ch;
+    font-size: clamp(8px, 2.35vw, 10px);
+    line-height: 1.28;
+    letter-spacing: 0.075em;
+    text-wrap: balance;
+  }
+}
+
+@media (max-width: 359px) {
+  .vendor-stats-grid {
+    gap: 8px;
+  }
+
+  .vendor-stat-card {
+    gap: 6px;
+    padding: 11px 7px;
+    border-radius: 16px;
+  }
+
+  .vendor-stat-card strong {
+    font-size: clamp(26px, 8.8vw, 34px);
+  }
+
+  .vendor-stat-card span {
+    font-size: 8px;
+  }
+}
+
+/* ==================================================
+   PRIZES — ONE CARD, LOGO-ONLY PARTNER LINKS
+   ================================================== */
+
+.partner-prize-grid,
+.partner-prize-card,
+.partner-prize-header,
+.partner-logo-link,
+.partner-logo-frame,
+.partner-logo,
+.partner-prize-heading {
+  min-width: 0;
+}
+
+.partner-prize-grid {
+  align-items: start;
+}
+
+/* The partner card is the only bordered surface. */
+.partner-prize-card,
+.partner-prize-card--featured {
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 21px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.075), transparent 38%),
+    rgba(247, 252, 255, 0.86);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.90),
+    0 10px 24px rgba(6, 29, 67, 0.045);
+}
+
+/* Logo and text sit directly in the card. Only the logo is linked. */
+.partner-prize-header {
+  display: grid;
+  width: 100%;
+  min-height: 102px;
+  grid-template-columns: minmax(96px, 38%) minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+}
+
+/* Explicitly remove every visual link container treatment. */
+.partner-logo-link,
+.partner-logo-link:link,
+.partner-logo-link:visited,
+.partner-logo-link:hover,
+.partner-logo-link:active {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: inherit;
+  background: transparent !important;
+  box-shadow: none !important;
+  line-height: 0;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.partner-logo-link::before,
+.partner-logo-link::after {
+  display: none !important;
+  content: none !important;
+}
+
+.partner-logo-link:focus,
+.partner-logo-link:focus-visible {
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Compatibility reset for an older copy of prizes.html. */
+.partner-logo-frame {
+  display: contents;
+}
+
+.partner-logo {
+  display: block;
+  width: 100%;
+  height: 92px;
+  max-width: 100%;
+  max-height: none;
+  min-width: 0;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.partner-logo-link:hover .partner-logo,
+.partner-logo-link:focus-visible .partner-logo {
+  opacity: 0.90;
+  transform: translateY(-2px) scale(1.015);
+}
+
+.partner-logo-link:active .partner-logo {
+  transform: scale(0.985);
+}
+
+.partner-logo--summit {
+  height: 78px;
+}
+
+.partner-logo--fusion {
+  width: 94%;
+  height: 92px;
+}
+
+.partner-logo--mambolee {
+  width: 92%;
+  height: 94px;
+}
+
+.partner-logo--montreal-salsa {
+  width: 92%;
+  height: 94px;
+}
+
+/* Outline the supplied white lettering without adding a background panel. */
+.partner-logo--montreal-bachata {
+  width: 98%;
+  height: 82px;
+  filter:
+    drop-shadow(1px 0 0 rgba(6, 29, 67, 0.92))
+    drop-shadow(-1px 0 0 rgba(6, 29, 67, 0.92))
+    drop-shadow(0 1px 0 rgba(6, 29, 67, 0.92))
+    drop-shadow(0 -1px 0 rgba(6, 29, 67, 0.92));
+}
+
+.partner-logo--calgary {
+  width: 96%;
+  height: 92px;
+}
+
+.partner-logo--canada {
+  width: 96%;
+  height: 90px;
+}
+
+/* National alliances follow the same stacked category rhythm as the international section. */
+.prize-category-list--national .prize-category-card--national {
+  margin-top: 0;
+}
+
+.prize-category-card--national-bachata {
+  --prize-accent: 255, 178, 74;
+}
+
+.prize-category-card--national-salsa {
+  --prize-accent: 38, 228, 255;
+}
+
+.partner-prize-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.partner-prize-heading h4 {
+  max-width: 100%;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(16px, 4.55vw, 22px);
+  font-weight: 950;
+  letter-spacing: -0.028em;
+  line-height: 1.04;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.partner-prize-heading time {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 26px;
+  align-items: center;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #087f9a;
+  background: rgba(0, 174, 202, 0.10);
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.partner-prize-card .prize-list-label {
+  margin-top: 13px;
+}
+
+.partner-prize-card .prize-benefit-list {
+  margin-top: 9px;
+}
+
+@media (max-width: 379px) {
+  .partner-prize-header {
+    min-height: 90px;
+    grid-template-columns: 84px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  .partner-logo {
+    height: 82px;
+  }
+
+  .partner-logo--summit {
+    height: 68px;
+  }
+
+  .partner-logo--montreal-bachata {
+    height: 72px;
+  }
+
+  .partner-prize-heading h4 {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 520px) {
+  .partner-prize-card,
+  .partner-prize-card--featured {
+    padding: 18px;
+    border-radius: 23px;
+  }
+
+  .partner-prize-header {
+    min-height: 108px;
+    grid-template-columns: clamp(112px, 34%, 156px) minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .partner-logo {
+    height: 104px;
+  }
+
+  .partner-logo--summit {
+    height: 86px;
+  }
+
+  .partner-logo--montreal-bachata {
+    height: 90px;
+  }
+
+  .partner-prize-heading {
+    gap: 9px;
+  }
+
+  .partner-prize-heading h4 {
+    font-size: clamp(19px, 3.45vw, 25px);
+  }
+
+  .partner-prize-heading time {
+    min-height: 28px;
+    padding: 7px 10px;
+    font-size: 8.5px;
+  }
+}
+
+@media (min-width: 720px) {
+  /* Keep the tablet presentation readable; desktop returns to two columns. */
+  .partner-prize-grid,
+  .partner-prize-grid--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .partner-prize-card,
+  .partner-prize-card--featured {
+    padding: 19px;
+    border-radius: 24px;
+  }
+
+  .partner-prize-header {
+    min-height: 110px;
+    grid-template-columns: clamp(126px, 24%, 158px) minmax(0, 1fr);
+    gap: 17px;
+  }
+
+  .partner-logo {
+    height: 106px;
+  }
+
+  .partner-logo--summit {
+    height: 88px;
+  }
+
+  .partner-logo--montreal-bachata {
+    height: 92px;
+  }
+
+  .partner-prize-heading h4 {
+    font-size: clamp(20px, 2.8vw, 26px);
+  }
+}
+
+@media (min-width: 900px) {
+  .partner-prize-grid,
+  .partner-prize-grid--single {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .partner-prize-header {
+    min-height: 100px;
+    grid-template-columns: 108px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .partner-logo {
+    height: 96px;
+  }
+
+  .partner-logo--summit {
+    height: 78px;
+  }
+
+  .partner-logo--montreal-bachata {
+    height: 82px;
+  }
+
+  .partner-prize-heading h4 {
+    font-size: clamp(17px, 2vw, 21px);
+  }
+}
+
+@media (min-width: 980px) {
+  .partner-prize-header {
+    min-height: 112px;
+    grid-template-columns: clamp(132px, 34%, 170px) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .partner-logo {
+    height: 108px;
+  }
+
+  .partner-logo--summit {
+    height: 88px;
+  }
+
+  .partner-logo--montreal-bachata {
+    height: 94px;
+  }
+
+  .partner-prize-heading h4 {
+    font-size: clamp(22px, 2.05vw, 28px);
+  }
+}
+
+/* ==================================================
+   PASSES PAGE — COLLAPSIBLE, SPACE-EFFICIENT GROUPS
+   ================================================== */
+
+.passes-page main {
+  overflow: hidden;
+}
+
+.passes-hero {
+  padding-bottom: 12px;
+}
+
+.passes-hero .artists-hero-inner {
+  padding-bottom: 27px;
+  background:
+    radial-gradient(circle at 4% 4%, rgba(255, 178, 74, 0.31), transparent 31%),
+    radial-gradient(circle at 96% 8%, rgba(38, 228, 255, 0.31), transparent 37%),
+    linear-gradient(135deg, #03142f 0%, #082759 52%, #07556d 100%);
+}
+
+.passes-hero .artists-hero-inner::after {
+  content: "";
+  position: absolute;
+  right: -74px;
+  bottom: -112px;
+  z-index: -1;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 34px rgba(255, 255, 255, 0.035),
+    0 0 0 76px rgba(38, 228, 255, 0.025);
+}
+
+.passes-hero .section-title {
+  max-width: 900px;
+  font-size: clamp(44px, 13vw, 78px);
+  text-wrap: balance;
+}
+
+.passes-hero .section-lead {
+  max-width: 760px;
+}
+
+.pass-accordion-section {
+  scroll-margin-top: 92px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.passes-weekend-section {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.pass-catalog-section {
+  position: relative;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  isolation: isolate;
+}
+
+.pass-catalog-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  border-top: 1px solid rgba(6, 29, 67, 0.055);
+  border-bottom: 1px solid rgba(6, 29, 67, 0.055);
+}
+
+.pass-catalog-section--friday::before {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(38, 228, 255, 0.13), transparent 30%),
+    linear-gradient(180deg, rgba(235, 249, 253, 0.72), rgba(255, 255, 255, 0.44));
+}
+
+.pass-catalog-section--saturday::before {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 178, 74, 0.14), transparent 31%),
+    linear-gradient(180deg, rgba(255, 250, 242, 0.62), rgba(244, 251, 255, 0.48));
+}
+
+.pass-accordion {
+  --accordion-rgb: 0, 174, 202;
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(6, 29, 67, 0.10);
+  border-radius: 23px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    0 14px 34px rgba(6, 29, 67, 0.08);
+}
+
+.pass-accordion--weekend {
+  --accordion-rgb: 0, 174, 202;
+}
+
+.pass-accordion--friday {
+  --accordion-rgb: 38, 228, 255;
+}
+
+.pass-accordion--saturday {
+  --accordion-rgb: 255, 178, 74;
+}
+
+.pass-accordion[open] {
+  border-color: rgba(var(--accordion-rgb), 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    0 18px 42px rgba(6, 29, 67, 0.10),
+    0 0 22px rgba(var(--accordion-rgb), 0.055);
+}
+
+.pass-accordion-summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 17px;
+  cursor: pointer;
+  list-style: none;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(var(--accordion-rgb), 0.11), transparent 40%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(246, 252, 255, 0.93));
+  transition: background 180ms ease;
+}
+
+.pass-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.pass-accordion-summary::marker {
+  content: "";
+}
+
+.pass-accordion-summary:hover {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(var(--accordion-rgb), 0.16), transparent 42%),
+    linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(241, 250, 254, 0.96));
+}
+
+.pass-accordion-summary:focus-visible {
+  outline: 3px solid rgba(var(--accordion-rgb), 0.30);
+  outline-offset: -3px;
+}
+
+.pass-accordion[open] .pass-accordion-summary {
+  border-bottom: 1px solid rgba(6, 29, 67, 0.075);
+}
+
+.pass-accordion-heading {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.pass-accordion-heading .section-kicker {
+  margin: 0;
+  color: #087f9a;
+  font-size: 8.5px;
+  letter-spacing: 0.15em;
+}
+
+.pass-accordion--saturday .pass-accordion-heading .section-kicker {
+  color: #a75a0c;
+}
+
+.passes-section-title {
+  max-width: 820px;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(28px, 8vw, 42px);
+  font-weight: 950;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.pass-accordion-lead {
+  display: block;
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.pass-accordion-toggle {
+  position: relative;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(var(--accordion-rgb), 0.22);
+  border-radius: 999px;
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 7px 18px rgba(6, 29, 67, 0.08);
+}
+
+.pass-accordion-toggle span {
+  position: absolute;
+  width: 14px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.pass-accordion-toggle span:last-child {
+  transform: rotate(90deg);
+}
+
+.pass-accordion[open] .pass-accordion-toggle span:last-child {
+  transform: rotate(0deg);
+  opacity: 0;
+}
+
+.pass-accordion-panel {
+  padding: 14px;
+  background:
+    radial-gradient(circle at 100% 100%, rgba(var(--accordion-rgb), 0.055), transparent 36%),
+    rgba(255, 255, 255, 0.68);
+}
+
+/* Weekend cards: preserve their identity while removing unnecessary height. */
+.passes-weekend-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  gap: 12px;
+}
+
+.passes-page .passes-weekend-grid.ticket-grid {
+  margin-top: 0;
+}
+
+.passes-page .passes-weekend-grid .pass-card {
+  min-height: 0;
+  padding: 16px 15px 15px;
+  border-radius: 20px;
+}
+
+.passes-page .passes-weekend-grid .launch-pass-card {
+  transform: none;
+}
+
+.passes-page .passes-weekend-grid .pass-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+}
+
+.passes-page .passes-weekend-grid .pass-card h3 {
+  font-size: clamp(21px, 6vw, 27px);
+}
+
+.passes-page .passes-weekend-grid .pass-fit {
+  margin-top: 6px;
+  font-size: 9px;
+  line-height: 1.25;
+}
+
+.passes-page .passes-weekend-grid .pass-divider {
+  width: 48px;
+  margin-top: 11px;
+  margin-bottom: 12px;
+}
+
+.passes-page .passes-weekend-grid .pass-benefits {
+  gap: 8px;
+  margin-bottom: 13px;
+}
+
+.passes-page .passes-weekend-grid .pass-benefits li {
+  grid-template-columns: 23px minmax(0, 1fr);
+  gap: 8px;
+  font-size: 12px;
+  line-height: 1.24;
+}
+
+.passes-page .passes-weekend-grid .pass-benefits small {
+  font-size: 11px;
+}
+
+.passes-page .passes-weekend-grid .benefit-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.passes-page .passes-weekend-grid .pass-action-primary {
+  min-height: 43px;
+}
+
+/* Friday and Saturday cards: no decorative icon and no artificial height. */
+.day-pass-grid {
+  display: grid;
+  align-items: start;
+  gap: 11px;
+  margin: 0;
+}
+
+.day-pass-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 15px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 19px;
+  color: var(--navy);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.09), transparent 36%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.99), rgba(247, 252, 255, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.94),
+    0 11px 26px rgba(6, 29, 67, 0.075);
+  isolation: isolate;
+}
+
+.day-pass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 3px;
+  background: linear-gradient(90deg, var(--aqua), var(--cyan));
+}
+
+.day-pass-card::after {
+  content: "";
+  position: absolute;
+  right: -72px;
+  bottom: -92px;
+  z-index: -1;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 199, 199, 0.11), transparent 66%);
+}
+
+.pass-catalog-section--saturday .day-pass-card::before {
+  background: linear-gradient(90deg, var(--flame), var(--cyan));
+}
+
+.pass-catalog-section--saturday .day-pass-card::after {
+  background: radial-gradient(circle, rgba(255, 178, 74, 0.13), transparent 66%);
+}
+
+.day-pass-card--primary {
+  border-color: rgba(0, 174, 202, 0.23);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.16), transparent 38%),
+    radial-gradient(circle at 0% 100%, rgba(255, 178, 74, 0.09), transparent 38%),
+    linear-gradient(155deg, rgba(255, 255, 255, 1), rgba(239, 250, 254, 0.96));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 15px 32px rgba(0, 174, 202, 0.105),
+    0 9px 24px rgba(6, 29, 67, 0.07);
+}
+
+.day-pass-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+}
+
+.day-pass-number {
+  color: rgba(6, 29, 67, 0.34);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.15em;
+}
+
+.day-pass-date {
+  display: inline-flex;
+  min-height: 25px;
+  align-items: center;
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: #087f9a;
+  background: rgba(0, 174, 202, 0.09);
+  font-size: 7.5px;
+  font-weight: 950;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.pass-catalog-section--saturday .day-pass-date {
+  color: #a75a0c;
+  background: rgba(255, 178, 74, 0.13);
+}
+
+.day-pass-icon {
+  display: none;
+}
+
+.day-pass-card h3 {
+  max-width: 18ch;
+  margin: 12px 0 0;
+  color: var(--navy);
+  font-size: clamp(22px, 6.6vw, 30px);
+  font-weight: 950;
+  letter-spacing: -0.043em;
+  line-height: 0.99;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.day-pass-card > p {
+  max-width: 34ch;
+  margin: 7px 0 12px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.42;
+}
+
+.day-pass-action {
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 43px;
+  margin-top: 0;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.day-pass-action span:last-child {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.pass-checkout-note {
+  width: fit-content;
+  max-width: 100%;
+  margin: 13px auto 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(6, 29, 67, 0.08);
+  border-radius: 999px;
+  color: rgba(6, 29, 67, 0.66);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 18px rgba(6, 29, 67, 0.05);
+  font-size: 8.5px;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  line-height: 1.35;
+  text-align: center;
+}
+
+@media (min-width: 520px) {
+  .passes-hero .artists-hero-inner {
+    padding: 36px 26px 32px;
+  }
+
+  .pass-accordion-summary {
+    padding: 19px 20px;
+  }
+
+  .pass-accordion-panel {
+    padding: 16px;
+  }
+
+  .passes-section-title {
+    font-size: clamp(34px, 6.8vw, 48px);
+  }
+
+  .pass-accordion-lead {
+    font-size: 13px;
+  }
+
+  .day-pass-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .day-pass-card {
+    padding: 16px;
+  }
+
+  .passes-page-link,
+  .passes-page-link:visited {
+    min-width: 220px;
+  }
+}
+
+@media (min-width: 720px) {
+  .passes-hero {
+    padding-bottom: 18px;
+  }
+
+  .passes-hero .artists-hero-inner {
+    padding: 48px 40px 39px;
+  }
+
+  .pass-accordion-section,
+  .passes-weekend-section,
+  .pass-catalog-section {
+    padding-top: 22px;
+    padding-bottom: 22px;
+  }
+
+  .pass-accordion {
+    border-radius: 28px;
+  }
+
+  .pass-accordion-summary {
+    gap: 20px;
+    padding: 22px 24px;
+  }
+
+  .pass-accordion-heading {
+    gap: 7px;
+  }
+
+  .pass-accordion-heading .section-kicker {
+    font-size: 9px;
+  }
+
+  .passes-section-title {
+    font-size: clamp(42px, 5.2vw, 60px);
+  }
+
+  .pass-accordion-lead {
+    max-width: 670px;
+    font-size: 14px;
+  }
+
+  .pass-accordion-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .pass-accordion-panel {
+    padding: 20px;
+  }
+
+  .passes-weekend-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .passes-page .passes-weekend-grid .pass-card {
+    padding: 19px 18px 17px;
+    border-radius: 24px;
+  }
+
+  .passes-page .passes-weekend-grid .pass-card h3 {
+    font-size: clamp(23px, 3.1vw, 30px);
+  }
+
+  .day-pass-grid {
+    gap: 14px;
+  }
+
+  .day-pass-card {
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .day-pass-card h3 {
+    font-size: clamp(24px, 3.5vw, 32px);
+  }
+}
+
+@media (min-width: 980px) {
+  .passes-hero .artists-hero-inner {
+    padding: 60px 54px 47px;
+  }
+
+  .passes-hero .section-title {
+    font-size: clamp(66px, 6.5vw, 96px);
+  }
+
+  .pass-accordion-summary {
+    padding: 24px 28px;
+  }
+
+  .pass-accordion-panel {
+    padding: 22px;
+  }
+
+  .day-pass-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .day-pass-card {
+    padding: 17px;
+  }
+
+  .day-pass-card h3 {
+    font-size: clamp(22px, 2.05vw, 29px);
+  }
+
+  .day-pass-card > p {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1180px) {
+  .day-pass-grid {
+    gap: 16px;
+  }
+
+  .day-pass-card {
+    padding: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-logo-link .partner-logo,
+  .pass-accordion-summary,
+  .pass-accordion-toggle span,
+  .passes-page-link {
+    transition: none;
+  }
+}
