@@ -143,6 +143,7 @@
   }
 
   function startCountdown() {
+    config.eventStart = "2026-08-28T10:00:00-04:00";
     const countdown = document.querySelector("[data-countdown]");
     if (!countdown || !config.eventStart) return;
 

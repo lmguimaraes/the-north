@@ -3,6 +3,7 @@
   - compact two-up vendor stats on mobile
   - passes page and collapsible ticket groups
   - compact partner prize cards with logo-only outbound links
+  - responsive competition judging panel
 */
 
 /* ==================================================
@@ -504,6 +505,49 @@
   max-width: 760px;
 }
 
+.passes-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.passes-hero-chips a,
+.passes-hero-chips a:visited {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.passes-hero-chips a:hover,
+.passes-hero-chips a:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(38, 228, 255, 0.52);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.passes-hero-chips a:focus-visible {
+  outline: 3px solid rgba(38, 228, 255, 0.28);
+  outline-offset: 2px;
+}
+
 .pass-accordion-section {
   scroll-margin-top: 92px;
   padding-top: 15px;
@@ -923,6 +967,13 @@
     padding: 36px 26px 32px;
   }
 
+  .passes-hero-chips a,
+  .passes-hero-chips a:visited {
+    min-height: 33px;
+    padding: 9px 12px;
+    font-size: 9px;
+  }
+
   .pass-accordion-summary {
     padding: 19px 20px;
   }
@@ -1078,8 +1129,178 @@
   }
 }
 
+
+
+/* ==================================================
+   COMPETITION — COLLAPSIBLE JUDGING PANEL
+   ================================================== */
+
+.competition-judges-body {
+  padding-top: 2px;
+}
+
+.competition-judges-intro {
+  max-width: 760px;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.competition-judge-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+}
+
+.competition-judge-card {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid rgba(6, 29, 67, 0.09);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(38, 228, 255, 0.10), transparent 42%),
+    rgba(247, 252, 255, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 10px 22px rgba(6, 29, 67, 0.055);
+}
+
+.competition-judge-card--head {
+  border-color: rgba(255, 178, 74, 0.34);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 178, 74, 0.22), transparent 48%),
+    radial-gradient(circle at 100% 100%, rgba(38, 228, 255, 0.10), transparent 45%),
+    rgba(255, 252, 246, 0.94);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 12px 26px rgba(6, 29, 67, 0.07),
+    0 0 18px rgba(255, 178, 74, 0.08);
+}
+
+.competition-judge-photo {
+  position: relative;
+  overflow: hidden;
+  width: 78px;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0, 174, 202, 0.16), rgba(255, 178, 74, 0.18));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 8px 18px rgba(6, 29, 67, 0.11);
+}
+
+.competition-judge-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.competition-judge-copy {
+  min-width: 0;
+}
+
+.competition-judge-role {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: #087f9a;
+  background: rgba(0, 174, 202, 0.10);
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.competition-judge-card--head .competition-judge-role {
+  color: var(--navy);
+  background: linear-gradient(135deg, rgba(255, 178, 74, 0.36), rgba(38, 228, 255, 0.17));
+}
+
+.competition-judge-copy h3 {
+  margin: 7px 0 0;
+  color: var(--navy);
+  font-size: clamp(18px, 5.6vw, 23px);
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.competition-judge-copy p {
+  margin: 5px 0 0;
+  color: #087f9a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+@media (min-width: 560px) {
+  .competition-judge-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .competition-judge-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .competition-judge-photo {
+    width: 72px;
+  }
+
+  .competition-judge-copy h3 {
+    font-size: clamp(18px, 3.4vw, 23px);
+  }
+}
+
+@media (min-width: 920px) {
+  .competition-judges-intro {
+    margin-bottom: 18px;
+    font-size: 15px;
+  }
+
+  .competition-judge-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .competition-judge-card {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 0;
+    padding: 11px 11px 15px;
+    text-align: center;
+  }
+
+  .competition-judge-photo {
+    width: 100%;
+    border-radius: 16px;
+  }
+
+  .competition-judge-copy {
+    display: grid;
+    justify-items: center;
+    padding: 11px 4px 0;
+  }
+
+  .competition-judge-copy h3 {
+    font-size: clamp(18px, 1.75vw, 24px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .partner-logo-link .partner-logo,
+  .passes-hero-chips a,
   .pass-accordion-summary,
   .pass-accordion-toggle span,
   .passes-page-link {

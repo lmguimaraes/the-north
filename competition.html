@@ -10,6 +10,7 @@
   <meta property="og:image" content="assets/social-share.jpg" />
   <meta name="theme-color" content="#061d43" />
   <link rel="stylesheet" href="css/styles.css?v=31" />
+  <link rel="stylesheet" href="css/site-updates.css?v=8" />
 </head>
 <body data-page="competition">
   <div class="page-shell competition-page">
@@ -279,15 +280,57 @@
               </div>
             </div>
           <div class="competition-accordion" aria-label="Competition details" data-i18n-aria-label="competition.detailsAria">
-            <details class="competition-detail">
-                <summary>
+            <details class="competition-detail competition-detail--judges">
+              <summary>
                 <span data-i18n="competition.judges.title">Judges</span>
-                </summary>
-                <div class="competition-detail-body">
-                <p data-i18n="competition.judges.copy">
-                    The official judging panel will be announced soon. Judges may vary by division, category, and competition format.
+              </summary>
+              <div class="competition-detail-body competition-judges-body">
+                <p class="competition-judges-intro" data-i18n="competition.judges.copy">
+                  Meet the official judging panel for The North Latin Festival. The panel brings international experience across salsa, bachata, performance, and competition.
                 </p>
+                <div class="competition-judge-grid" role="list" aria-label="Official competition judges" data-i18n-aria-label="competition.judges.gridAria">
+                  <article class="competition-judge-card competition-judge-card--head" role="listitem">
+                    <div class="competition-judge-photo">
+                      <img src="assets/judges/billy-fajardo.webp" alt="Billy Fajardo artist announcement portrait" data-i18n-alt="artists.billy.alt" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="competition-judge-copy">
+                      <span class="competition-judge-role" data-i18n="competition.judges.headJudge">Head Judge</span>
+                      <h3 data-i18n="artists.billy.name">Billy Fajardo</h3>
+                      <p data-i18n="artists.billy.country">USA 🇺🇸</p>
+                    </div>
+                  </article>
+                  <article class="competition-judge-card" role="listitem">
+                    <div class="competition-judge-photo">
+                      <img src="assets/judges/gerardo-madian.webp" alt="Gerardo and Madian artist announcement portrait" data-i18n-alt="artists.gerardo.alt" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="competition-judge-copy">
+                      <span class="competition-judge-role" data-i18n="competition.judges.judges">Judges</span>
+                      <h3 data-i18n="artists.gerardo.name">Gerardo &amp; Madian</h3>
+                      <p data-i18n="artists.gerardo.country">Mexico 🇲🇽</p>
+                    </div>
+                  </article>
+                  <article class="competition-judge-card" role="listitem">
+                    <div class="competition-judge-photo">
+                      <img src="assets/judges/jhoana-palhua.webp" alt="Jhoana Palhua artist announcement portrait" data-i18n-alt="artists.jhoana.alt" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="competition-judge-copy">
+                      <span class="competition-judge-role" data-i18n="competition.judges.judge">Judge</span>
+                      <h3 data-i18n="artists.jhoana.name">Jhoana Palhua</h3>
+                      <p data-i18n="artists.jhoana.country">Peru 🇵🇪</p>
+                    </div>
+                  </article>
+                  <article class="competition-judge-card" role="listitem">
+                    <div class="competition-judge-photo">
+                      <img src="assets/judges/erick-morales.webp" alt="Erick Morales artist announcement portrait" data-i18n-alt="artists.erick.alt" loading="lazy" decoding="async" />
+                    </div>
+                    <div class="competition-judge-copy">
+                      <span class="competition-judge-role" data-i18n="competition.judges.judge">Judge</span>
+                      <h3 data-i18n="artists.erick.name">Erick “El Terrible” Morales</h3>
+                      <p data-i18n="artists.erick.country">Mexico 🇲🇽</p>
+                    </div>
+                  </article>
                 </div>
+              </div>
             </details>
             <details class="competition-detail">
                 <summary>
@@ -376,7 +419,7 @@
       </div>
     </footer>
   </div>
-  <script src="js/i18n.js?v=31"></script>
+  <script src="js/i18n.js?v=34"></script>
   <script src="js/passes.i18n.js?v=1"></script>
   <script src="js/site.config.js?v=14"></script>
   <script src="js/main.js?v=20"></script>
