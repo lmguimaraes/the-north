@@ -12,7 +12,7 @@
   <link rel="preload" as="image" href="assets/the-north-hero-banner.webp" media="(max-width: 719px)" />
   <link rel="preload" as="image" href="assets/the-north-hero-desktop.webp" media="(min-width: 720px)" />
   <link rel="stylesheet" href="css/styles.css?v=31" />
-  <link rel="stylesheet" href="css/site-updates.css?v=7" />
+  <link rel="stylesheet" href="css/site-updates.css?v=15" />
 </head>
 <body data-page="home">
   <svg class="icon-sprite" aria-hidden="true" focusable="false">
@@ -100,6 +100,7 @@
         <div class="nav-links" id="site-menu" aria-label="Site links" data-i18n-aria-label="nav.linksAria">
           <a href="#home" data-i18n="nav.home">Home</a>
           <a href="artists.html" data-i18n="nav.artists">Artists</a>
+          <a href="schedule.html" data-i18n="nav.schedule">Schedule</a>
           <a href="competition.html" data-i18n="nav.competition">Competition</a>
           <a href="prizes.html" data-i18n="nav.prizes">Prizes &amp; Awards</a>
           <a href="vendors.html" data-i18n="nav.vendors">Vendors</a>
@@ -140,6 +141,45 @@
           </div>
         </div>
       </section>
+
+      <section class="section flash-pass-offer" data-flash-pass hidden aria-label="Limited 2027 Full Pass offer" data-i18n-aria-label="flashPass.aria">
+        <div class="section-inner">
+          <article class="flash-pass-card">
+            <span class="flash-pass-year" aria-hidden="true">2027</span>
+            <div class="flash-pass-copy">
+              <div class="flash-pass-topline">
+                <span class="flash-pass-badge" data-i18n="flashPass.window">Available for 24 hours</span>
+              </div>
+              <h2 data-i18n="flashPass.title">Secure your 2027 Full Pass.</h2>
+              <p data-i18n="flashPass.copy">For one day only, reserve your place for the next edition of The North Latin Festival.</p>
+            </div>
+
+            <div class="flash-pass-purchase">
+              <p class="flash-pass-timer-label" data-i18n="flashPass.timerLabel">Offer ends in</p>
+              <div class="flash-pass-timer" data-flash-pass-timer role="timer" aria-label="Time remaining in the 2027 Full Pass offer" data-i18n-aria-label="flashPass.timerAria">
+                <div class="flash-pass-time-unit">
+                  <strong data-flash-pass-hours>24</strong>
+                  <span data-i18n="flashPass.hours">Hours</span>
+                </div>
+                <div class="flash-pass-time-unit">
+                  <strong data-flash-pass-minutes>00</strong>
+                  <span data-i18n="flashPass.minutes">Minutes</span>
+                </div>
+                <div class="flash-pass-time-unit">
+                  <strong data-flash-pass-seconds>00</strong>
+                  <span data-i18n="flashPass.seconds">Seconds</span>
+                </div>
+              </div>
+              <a class="flash-pass-cta" data-flash-pass-cta aria-label="Buy the 2027 Full Pass" data-i18n-aria-label="flashPass.ctaAria">
+                <span data-i18n="flashPass.cta">Buy the 2027 Full Pass</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <small class="flash-pass-checkout-note" data-i18n="flashPass.checkoutNote">Secure checkout opens in a new tab.</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="section overview" aria-label="Festival overview" data-i18n-aria-label="overview.aria">
         <div class="section-inner split">
           <div class="copy-stack">
@@ -161,13 +201,14 @@
             <div class="countdown-glow" aria-hidden="true"></div>
             <p class="panel-kicker" data-i18n="countdown.kicker">Countdown</p>
             <h3 data-i18n="countdown.title">August 28, 2026</h3>
-            <p class="panel-copy" data-i18n="countdown.copy">The weekend starts here. Full Pass and Dancer Pass are available now, and the full program is coming soon.</p>
+            <p class="panel-copy" data-i18n="countdown.copy">The full schedule is live. Plan your workshops, competitions, and night themes before the weekend begins.</p>
             <div class="countdown" data-countdown>
               <div><strong data-days>--</strong><span data-i18n="countdown.days">Days</span></div>
               <div><strong data-hours>--</strong><span data-i18n="countdown.hours">Hours</span></div>
               <div><strong data-minutes>--</strong><span data-i18n="countdown.minutes">Minutes</span></div>
               <div><strong data-seconds>--</strong><span data-i18n="countdown.seconds">Seconds</span></div>
             </div>
+            <a class="btn btn-outline schedule-home-cta" href="schedule.html" data-i18n="schedule.homeCta">View schedule</a>
           </aside>
         </div>
       </section>
@@ -406,6 +447,45 @@
           </div>
         </div>
       </section>
+
+      <section id="sponsors" class="section brand-showcase-section brand-showcase-section--sponsors" aria-label="Festival sponsors" data-i18n-aria-label="sponsors.aria">
+        <div class="section-inner brand-showcase-inner">
+          <header class="brand-showcase-heading">
+            <p class="section-kicker" data-i18n="sponsors.kicker">Community support</p>
+            <h2 class="section-title" data-i18n="sponsors.title">Our Sponsors</h2>
+            <p class="section-lead brand-showcase-copy" data-i18n="sponsors.copy">The organizations helping bring The North Latin Festival to life.</p>
+          </header>
+          <div class="brand-showcase-board brand-showcase-board--sponsor-levels">
+            <div class="sponsor-level-grid">
+              <section class="sponsor-level sponsor-level--official" aria-labelledby="sponsor-level-official">
+                <p class="sponsor-level-label" id="sponsor-level-official" data-i18n="sponsors.levels.official">Official Partner</p>
+                <div class="sponsor-level-body sponsor-level-body--alliance">
+                  <img class="brand-showcase-logo brand-showcase-logo--alliance" src="assets/sponsors/alliance-dance-co.webp" alt="Alliance Dance Co. logo" data-i18n-alt="sponsors.allianceAlt" loading="lazy" decoding="async" />
+                </div>
+              </section>
+
+              <section class="sponsor-level sponsor-level--support" aria-labelledby="sponsor-level-support">
+                <p class="sponsor-level-label" id="sponsor-level-support" data-i18n="sponsors.levels.support">With the support of</p>
+                <div class="sponsor-level-body sponsor-level-body--imperio">
+                  <img class="brand-showcase-logo brand-showcase-logo--imperio" src="assets/sponsors/imperio-studio-de-danse.webp" alt="Imperio Studio de Danse logo" data-i18n-alt="sponsors.imperioAlt" loading="lazy" decoding="async" />
+                </div>
+              </section>
+
+              <section class="sponsor-level sponsor-level--contribution" aria-labelledby="sponsor-level-contribution">
+                <p class="sponsor-level-label" id="sponsor-level-contribution" data-i18n="sponsors.levels.contribution">With the contribution of</p>
+                <div class="sponsor-contribution-grid">
+                  <div class="sponsor-contribution-mark sponsor-contribution-mark--blueberry">
+                    <img class="brand-showcase-logo brand-showcase-logo--blueberry" src="assets/sponsors/projekt-blueberry.webp" alt="Projekt Blueberry Atelier floral logo" data-i18n-alt="sponsors.blueberryAlt" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="sponsor-contribution-mark sponsor-contribution-mark--ninos">
+                    <img class="brand-showcase-logo brand-showcase-logo--ninos" src="assets/sponsors/les-ninos-inc.webp" alt="Les Ninos Inc. logo" data-i18n-alt="sponsors.ninosAlt" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="site-footer">
       <div class="footer-inner">
@@ -414,9 +494,11 @@
       </div>
     </footer>
   </div>
-  <script src="js/i18n.js?v=34"></script>
+  <script src="js/i18n.js?v=40"></script>
   <script src="js/passes.i18n.js?v=4"></script>
   <script src="js/site.config.js?v=14"></script>
+  <script src="js/flash-pass.config.js?v=1"></script>
   <script src="js/main.js?v=19"></script>
+  <script src="js/flash-pass.js?v=1"></script>
 </body>
 </html>
