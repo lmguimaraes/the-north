@@ -11,7 +11,7 @@
 // CHECKOUT:
 //   Paste the direct 2027 Full Pass Stripe/payment URL into purchaseUrl.
 window.TNF_2027_FLASH_PASS = {
-  showManually: true,
+  showManually: false,
   useTimedWindow: true,
 
   startsAt: "2026-08-29T10:00:00-04:00",
