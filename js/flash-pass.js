@@ -13,7 +13,7 @@
    * END_AT is midnight immediately after Sunday and is exclusive,
    * which gives an exact 26-hour sale window.
    */
-  const START_AT = Date.parse("2026-08-29T22:00:00-04:00");
+  const START_AT = Date.parse("2026-08-29T20:00:00-04:00");
   const END_AT = Date.parse("2026-08-31T00:00:00-04:00");
 
   const CHECKOUT_URL =
@@ -69,7 +69,7 @@
       copyEl.removeAttribute("data-i18n");
 
       copyEl.textContent = isFrench
-        ? "Disponible du samedi 22 h au dimanche 23 h 59, heure de l’Est."
+        ? "Disponible du samedi 20 h au dimanche 23 h 59, heure de l’Est."
         : "Available from Saturday 10:00 PM until Sunday 11:59 PM Eastern Time.";
     }
   }
@@ -169,7 +169,7 @@
 
     /*
      * ACTIVE:
-     * 2026-08-29 22:00:00 EDT
+     * 2026-08-29 20:00:00 EDT
      * <= now <
      * 2026-08-31 00:00:00 EDT
      */
