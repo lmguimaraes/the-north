@@ -1,84 +1,255 @@
-(function () {
+(() => {
   "use strict";
 
+  /*
+   * FLASH PASS SALE WINDOW
+   *
+   * Saturday, August 29, 2026 at 10:00 PM Eastern Time
+   * through
+   * Sunday, August 30, 2026 at 11:59:59 PM Eastern Time
+   *
+   * Eastern Time is EDT / UTC-4 on these dates.
+   *
+   * END_AT is midnight immediately after Sunday and is exclusive,
+   * which gives an exact 26-hour sale window.
+   */
+  const START_AT = Date.parse("2026-08-29T20:00:00-04:00");
+  const END_AT = Date.parse("2026-08-31T00:00:00-04:00");
+
+  const CHECKOUT_URL =
+    "https://buy.stripe.com/6oU7sK12g1Lc8Ok81983C00";
+
   const offer = document.querySelector("[data-flash-pass]");
-  if (!offer) return;
 
-  const config = window.TNF_2027_FLASH_PASS || {};
+  if (!offer) {
+    return;
+  }
+
   const cta = offer.querySelector("[data-flash-pass-cta]");
-  const hours = offer.querySelector("[data-flash-pass-hours]");
-  const minutes = offer.querySelector("[data-flash-pass-minutes]");
-  const seconds = offer.querySelector("[data-flash-pass-seconds]");
+  const hoursEl = offer.querySelector("[data-flash-pass-hours]");
+  const minutesEl = offer.querySelector("[data-flash-pass-minutes]");
+  const secondsEl = offer.querySelector("[data-flash-pass-seconds]");
 
-  if (!cta || !hours || !minutes || !seconds) return;
+  const badgeEl = offer.querySelector(".flash-pass-badge");
+  const copyEl = offer.querySelector(
+    '[data-i18n="flashPass.copy"]'
+  );
 
-  const HOUR = 60 * 60 * 1000;
-  const durationHours = Number(config.durationHours);
-  const duration = Number.isFinite(durationHours) && durationHours > 0
-    ? durationHours * HOUR
-    : 24 * HOUR;
-  const start = new Date(config.startsAt).getTime();
-  const end = start + duration;
-  const manualPreview = config.showManually === true;
-  const timedRelease = config.useTimedWindow === true;
-  const purchaseUrl = typeof config.purchaseUrl === "string" ? config.purchaseUrl.trim() : "";
-  const hasCheckout = /^https?:\/\//i.test(purchaseUrl);
-  const previewEnd = Date.now() + duration;
-  let missingLinkWarningShown = false;
+  /*
+   * Configure Stripe checkout.
+   */
+  if (cta) {
+    cta.href = CHECKOUT_URL;
+    cta.target = "_blank";
+    cta.rel = "noopener noreferrer";
+  }
 
-  const pad = (value) => String(Math.max(0, value)).padStart(2, "0");
+  /*
+   * The existing HTML currently says "Available for 24 hours".
+   * This changes it to the correct 26-hour wording.
+   *
+   * It also keeps the text correct when switching EN / FR.
+   */
+  function updateWindowCopy() {
+    const isFrench = (
+      document.documentElement.lang || ""
+    )
+      .toLowerCase()
+      .startsWith("fr");
 
-  function wireCheckout() {
-    if (hasCheckout) {
-      cta.href = purchaseUrl;
-      cta.target = "_blank";
-      cta.rel = "noopener noreferrer";
-      cta.classList.remove("is-disabled");
-      cta.removeAttribute("aria-disabled");
+    if (badgeEl) {
+      badgeEl.removeAttribute("data-i18n");
+
+      badgeEl.textContent = isFrench
+        ? "Disponible pendant 26 heures"
+        : "Available for 26 hours";
+    }
+
+    if (copyEl) {
+      copyEl.removeAttribute("data-i18n");
+
+      copyEl.textContent = isFrench
+        ? "Disponible du samedi 20 h au dimanche 23 h 59, heure de l’Est."
+        : "Available from Saturday 10:00 PM until Sunday 11:59 PM Eastern Time.";
+    }
+  }
+
+  updateWindowCopy();
+
+  /*
+   * Watch the site's existing EN / FR switcher.
+   */
+  const languageObserver = new MutationObserver(
+    updateWindowCopy
+  );
+
+  languageObserver.observe(
+    document.documentElement,
+    {
+      attributes: true,
+      attributeFilter: ["lang"]
+    }
+  );
+
+  /*
+   * Prefer the hosting server's clock.
+   *
+   * This reduces the chance that somebody with an incorrectly
+   * configured computer clock sees the offer too early or too late.
+   *
+   * If server time can't be read, browser time is used instead.
+   */
+  let clockOffsetMs = 0;
+
+  function nowMs() {
+    return Date.now() + clockOffsetMs;
+  }
+
+  async function syncClock() {
+    if (
+      location.protocol !== "http:" &&
+      location.protocol !== "https:"
+    ) {
       return;
     }
 
-    cta.removeAttribute("href");
-    cta.removeAttribute("target");
-    cta.removeAttribute("rel");
-    cta.classList.add("is-disabled");
-    cta.setAttribute("aria-disabled", "true");
-  }
+    try {
+      const url = new URL(location.href);
 
-  function updateTimer(distance) {
-    const remaining = Math.max(0, distance);
-    const totalHours = Math.floor(remaining / HOUR);
-    const remainingMinutes = Math.floor((remaining / (60 * 1000)) % 60);
-    const remainingSeconds = Math.floor((remaining / 1000) % 60);
+      url.hash = "";
 
-    hours.textContent = pad(totalHours);
-    minutes.textContent = pad(remainingMinutes);
-    seconds.textContent = pad(remainingSeconds);
-  }
+      /*
+       * Cache-busting parameter so we're not reading the time
+       * from a stale cached response.
+       */
+      url.searchParams.set(
+        "_flashPassTime",
+        String(Date.now())
+      );
 
-  function tick() {
-    const now = Date.now();
-    const hasValidWindow = Number.isFinite(start) && Number.isFinite(end);
-    const timedWindowIsOpen = timedRelease && hasValidWindow && now >= start && now < end;
-    const shouldShow = manualPreview || (timedWindowIsOpen && hasCheckout);
+      const response = await fetch(
+        url.toString(),
+        {
+          method: "HEAD",
+          cache: "no-store",
+          credentials: "same-origin"
+        }
+      );
 
-    offer.hidden = !shouldShow;
+      const serverDate =
+        response.headers.get("date");
 
-    if (!shouldShow) {
-      if (timedWindowIsOpen && !hasCheckout && !missingLinkWarningShown) {
-        missingLinkWarningShown = true;
-        console.warn(
-          "2027 Full Pass offer is inside its timed window, but purchaseUrl is empty or invalid in js/flash-pass.config.js."
-        );
+      const serverTime = serverDate
+        ? Date.parse(serverDate)
+        : NaN;
+
+      if (Number.isFinite(serverTime)) {
+        clockOffsetMs =
+          serverTime - Date.now();
       }
+    } catch (_) {
+      /*
+       * Safe fallback:
+       * use the visitor's browser clock.
+       */
+    }
+  }
+
+  function setTime(element, value) {
+    if (!element) {
       return;
     }
 
-    const countdownEnd = timedWindowIsOpen ? end : previewEnd;
-    updateTimer(countdownEnd - now);
+    element.textContent = String(value)
+      .padStart(2, "0");
   }
 
-  wireCheckout();
-  tick();
-  window.setInterval(tick, 1000);
+  function render() {
+    const now = nowMs();
+
+    /*
+     * ACTIVE:
+     * 2026-08-29 20:00:00 EDT
+     * <= now <
+     * 2026-08-31 00:00:00 EDT
+     */
+    const isActive =
+      now >= START_AT &&
+      now < END_AT;
+
+    /*
+     * Your existing HTML already uses the hidden attribute.
+     * We simply turn it on/off.
+     */
+    offer.hidden = !isActive;
+
+    if (!isActive) {
+      return;
+    }
+
+    /*
+     * Countdown uses TOTAL remaining hours.
+     *
+     * Therefore the sale begins at:
+     * 26:00:00
+     *
+     * rather than wrapping around to 02:00:00.
+     */
+    const remainingSeconds =
+      Math.max(
+        0,
+        Math.ceil(
+          (END_AT - now) / 1000
+        )
+      );
+
+    const hours =
+      Math.floor(
+        remainingSeconds / 3600
+      );
+
+    const minutes =
+      Math.floor(
+        (remainingSeconds % 3600) / 60
+      );
+
+    const seconds =
+      remainingSeconds % 60;
+
+    setTime(hoursEl, hours);
+    setTime(minutesEl, minutes);
+    setTime(secondsEl, seconds);
+  }
+
+  /*
+   * Render immediately.
+   */
+  render();
+
+  /*
+   * Then synchronize against server time
+   * and render again.
+   */
+  syncClock().finally(render);
+
+  /*
+   * Four checks per second means the card appears/disappears
+   * very close to the exact boundary rather than potentially
+   * being a full second late.
+   */
+  window.setInterval(
+    render,
+    250
+  );
+
+  /*
+   * Re-sync server time periodically in case the page remains
+   * open for many hours.
+   */
+  window.setInterval(
+    () => {
+      syncClock().finally(render);
+    },
+    5 * 60 * 1000
+  );
 })();
