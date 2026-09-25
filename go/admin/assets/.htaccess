@@ -1,0 +1,15 @@
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+</IfModule>
+
+# Only the production manager assets in this folder may be served.
+<FilesMatch "^(?!admin\.css$|admin\.js$|index\.php$).+">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

@@ -1,0 +1,12 @@
+Target URL: https://thenorthlatinfestival.ca/go/
+QR error correction: H (highest standard error-correction level)
+QR version: 5
+Core modules: 37 x 37
+Total modules including quiet zone: 45 x 45
+Centre logo: reduced-size transparent logo on a white backing plate for scan reliability
+Print PNG: 5760 x 5760px at 300 DPI
+Web PNG: 1800 x 1800px at 300 DPI
+Vector master: the-north-dynamic-qr.svg
+
+Important: this production QR always encodes the permanent URL above.
+For local/ngrok testing, use the temporary QR generated inside /go/admin/.
